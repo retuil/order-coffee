@@ -98,6 +98,16 @@ function closeModal(event) {
     document.querySelector('.modal-overlay').style.display = "none";
 }
 
+function processUserWishes(event) {
+    const value = event.target.value;
+    event.target.parentNode.querySelector('.user-wishes-value').textContent = value;
+}
+for (const textArea of document.querySelectorAll(".user-wishes")){
+    textArea.addEventListener('input', processUserWishes);
+}
+
+
+
 for (const form of document.querySelectorAll('form')){
     form.addEventListener("submit", processingSubmit);
 }
