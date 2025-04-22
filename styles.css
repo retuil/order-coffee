@@ -87,3 +87,7 @@
     border: none;
     cursor: pointer;
 }
+
+table, td, th {
+    border: 1px solid #808080;
+}
