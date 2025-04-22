@@ -98,8 +98,12 @@ function closeModal(event) {
 }
 
 function processUserWishes(event) {
-    const value = event.target.value;
-    event.target.parentNode.querySelector('.user-wishes-value').textContent = value;
+    let value = event.target.value;
+    const importants = ["срочно", "быстрее", "побыстрее", "скорее", "поскорее", "очень нужно"]
+    for (const important of importants) {
+        value = value.split(important).join(`<b>${important}</b>`);
+    }
+    event.target.parentNode.querySelector('.user-wishes-value').innerHTML = value;
 }
 for (const textArea of document.querySelectorAll(".user-wishes")){
     textArea.addEventListener('input', processUserWishes);
