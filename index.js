@@ -38,12 +38,59 @@ function deleteForm(e) {
 
 document.querySelector('.add-button').addEventListener('click', addNewForm);
 document.querySelector('.delete-button').addEventListener('click', deleteForm);
+const drinks = {
+    espresso: "Эспрессо",
+    capuccino:"Капучино",
+    cacao: "Какао"
+}
+const milks = {
+    usual: "обычное",
+    "no-fat":"обезжиренное",
+    soy: "соевое",
+    coconut: "кокосовое"
+}
 
+const extraOptions = {
+    "whipped cream": "взбитые сливки",
+    marshmallow: "зефирки",
+    chocolate: "шоколад",
+    cinnamon: "корица"
+}
 function processingSubmit(event) {
+    event.preventDefault();
     const modal = document.querySelector('.modal-overlay');
     modal.querySelector('h2').textContent = `Вы заказали ${formCount} ${numberStringForm(formCount)}`;
     modal.style.display = "block";
-    event.preventDefault();
+    const table = modal.querySelector('table');
+
+    table.innerHTML = '<tr><th>Напиток</th><th>Молоко</th><th>Дополнительно</th></tr>';
+    for (const form of document.querySelectorAll('form')){
+        const data = new FormData(form);
+
+        const row = document.createElement('tr');
+
+        const drinkCell =  document.createElement('td');
+        const milkCell =  document.createElement('td');
+        const extraCell =  document.createElement('td');
+
+        const drinkId = data.get('coffee');
+        drinkCell.textContent = drinks[drinkId];
+
+        const milkId = data.get('milk');
+
+        milkCell.textContent = milks[milkId];
+
+        const extras = data.getAll('options').map(opt=>extraOptions[opt]);
+
+        extraCell.textContent = extras.join(', ');
+        console.log(data)
+
+        row.appendChild(drinkCell);
+        row.appendChild(milkCell);
+        row.appendChild(extraCell);
+        table.appendChild(row);
+    }
+
 }
 
 function closeModal(event) {
