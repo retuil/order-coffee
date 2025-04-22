@@ -45,6 +45,10 @@
     border-radius: 5px;
 }
 
+.top-container{
+    display: flex;
+    justify-content: end;
+}
 
 .modal-overlay {
     display: none;
