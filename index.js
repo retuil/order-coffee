@@ -63,7 +63,7 @@ function processingSubmit(event) {
     modal.style.display = "block";
     const table = modal.querySelector('table');
 
-    table.innerHTML = '<tr><th>Напиток</th><th>Молоко</th><th>Дополнительно</th></tr>';
+    table.innerHTML = '<tr><th>Напиток</th><th>Молоко</th><th>Дополнительно</th><th>Пожелания</th></tr>';
     for (const form of document.querySelectorAll('form')){
         const data = new FormData(form);
 
@@ -72,6 +72,7 @@ function processingSubmit(event) {
         const drinkCell =  document.createElement('td');
         const milkCell =  document.createElement('td');
         const extraCell =  document.createElement('td');
+        const wishesCell =  document.createElement('td');
 
         const drinkId = data.get('coffee');
         drinkCell.textContent = drinks[drinkId];
@@ -83,11 +84,11 @@ function processingSubmit(event) {
         const extras = data.getAll('options').map(opt=>extraOptions[opt]);
 
         extraCell.textContent = extras.join(', ');
-        console.log(data)
-
+        wishesCell.textContent = data.get('user-wishes');
         row.appendChild(drinkCell);
         row.appendChild(milkCell);
         row.appendChild(extraCell);
+        row.appendChild(wishesCell);
         table.appendChild(row);
     }
 
