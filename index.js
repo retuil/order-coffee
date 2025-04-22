@@ -84,7 +84,7 @@ function processingSubmit(event) {
         const extras = data.getAll('options').map(opt=>extraOptions[opt]);
 
         extraCell.textContent = extras.join(', ');
-        wishesCell.textContent = data.get('user-wishes');
+        wishesCell.innerHTML = form.querySelector('.user-wishes-value').innerHTML;
         row.appendChild(drinkCell);
         row.appendChild(milkCell);
         row.appendChild(extraCell);
