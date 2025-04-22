@@ -22,7 +22,7 @@ function addNewForm() {
     newForm.reset();
     newForm.querySelector('.add-button').addEventListener('click', addNewForm);
     newForm.querySelector('.delete-button').addEventListener('click', deleteForm);
-    newForm.querySelector('.submit-button').addEventListener("click", processingSubmit);
+    newForm.addEventListener("submit", processingSubmit);
     form.parentNode.appendChild(newForm);
 
 }
@@ -97,8 +97,8 @@ function closeModal(event) {
     document.querySelector('.modal-overlay').style.display = "none";
 }
 
-for (const submitButton of document.getElementsByClassName("submit-button")) {
-    submitButton.addEventListener("click", processingSubmit);
+for (const form of document.querySelectorAll('form')){
+    form.addEventListener("submit", processingSubmit);
 }
 
 document.querySelector('.close').addEventListener("click", closeModal);
