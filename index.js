@@ -1,14 +1,17 @@
-function processingSubmit(event){
+function processingSubmit(e){
+    e.preventDefault();
+    console.log('111')
     document.querySelector('.modal-overlay').style.display = "block";
-    event.preventDefault();
+
 }
 
 function closeModal(event){
     document.querySelector('.modal-overlay').style.display = "none";
 }
 
-for (const submitButton of document.getElementsByClassName("submit-button")){
-    submitButton.addEventListener("click", processingSubmit);
+for (const form of document.querySelectorAll('form')){
+    console.log(form);
+    form.addEventListener("submit", processingSubmit);
 }
 
 document.querySelector('.close').addEventListener("click", closeModal);
