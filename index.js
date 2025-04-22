@@ -11,6 +11,7 @@ function addNewForm() {
     newForm.reset();
     newForm.querySelector('.add-button').addEventListener('click', addNewForm);
     newForm.querySelector('.delete-button').addEventListener('click', deleteForm);
+    newForm.addEventListener("submit", processingSubmit);
     form.parentNode.appendChild(newForm);
 
 }
